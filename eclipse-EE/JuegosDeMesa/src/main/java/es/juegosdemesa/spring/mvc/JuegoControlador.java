@@ -26,7 +26,7 @@ public class JuegoControlador {
 	@RequestMapping("/procesarFormJuego")
 	public String procesarFormJuego (@Valid @ModelAttribute("juegoNuevo") Juego juego,
 			BindingResult resultadoValidacion) {
-		
+		System.out.println(juego.getNombre());
 		if (resultadoValidacion.hasErrors())
 			return "FormJuego";
 		
