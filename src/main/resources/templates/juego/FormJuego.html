@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bootstrap demo</title>
+<title>Lista de juegos</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -20,12 +20,20 @@
 			<tr>
 				<th>Id</th>
 				<th>Nombre</th>
+				<th>Min. Jugadores</th>
+				<th>Max. Jugadores</th>
+				<th>¿Es cooperativo?</th>
+				<th>¿Es por equipos?</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr th:each="juego: ${juegos}">
 				<td th:text="${juego.id}">Oranges</td>
-				<td th:text="${juego.nombre}">0.99</td>
+				<td th:text="${juego.nombre}">Oranges</td>
+				<td th:text="${juego.minJugadores}">0.99</td>
+				<td th:text="${juego.maxJugadores}">0.99</td>
+				<td th:text="${juego.cooperativo}? 'Si' : 'No'">0.99</td>
+				<td th:text="${juego.porEquipos}? 'Si' : 'No'">0.99</td>
 			</tr>
 		</tbody>
 	</table>
