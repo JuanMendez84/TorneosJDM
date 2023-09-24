@@ -19,6 +19,13 @@ public class JuegoServiceImpl implements JuegoService {
 		return listaJuegos;
 	}
 	
+	@Override
+	public void saveJuego(Juego juegoG) {
+		// TODO Auto-generated method stub
+		
+		jr.save(juegoG);
+	}
+	
 	@Autowired
     private JuegoRepository jr;
 

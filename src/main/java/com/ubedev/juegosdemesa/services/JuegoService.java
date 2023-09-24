@@ -9,7 +9,8 @@ import com.ubedev.juegosdemesa.entity.Juego;
 @Service
 public interface JuegoService {
 
-	public List<Juego> getJuegos(); 
-
+	public List<Juego> getJuegos();
+	
+	public void saveJuego(Juego juegoG);
 	
 }

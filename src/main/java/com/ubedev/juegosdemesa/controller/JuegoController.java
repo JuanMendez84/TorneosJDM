@@ -35,9 +35,10 @@ public class JuegoController {
         //List<Juego> juegos = Arrays.asList(juegoNuevo,juegoNuevo2);
         List<Juego> juegos = js.getJuegos();
         
-        System.out.println("Entro en el controlador de juego");
         modelo.addAttribute("juegos", juegos);
-        modelo.addAttribute("saludo", "Que pasa Rafita!!");
+        
+        Juego juego=new Juego();
+    	modelo.addAttribute("juego", juego);
 
         return "juego/FormJuego";
     }
@@ -51,9 +52,9 @@ public class JuegoController {
     }
     
     @PostMapping("/procEdicionJuego")
-    public String procesaFormularioEdicionJuego(@ModelAttribute("juegoNuevo") Juego juegoNuevo) {
+    public String procesaFormularioEdicionJuego(@ModelAttribute("juego") Juego juegoNuevo) {
     	
-    	System.out.println(juegoNuevo.getNombre());
+    	js.saveJuego(juegoNuevo);
     	
         return "juego/procEdicionJuego";
     }
