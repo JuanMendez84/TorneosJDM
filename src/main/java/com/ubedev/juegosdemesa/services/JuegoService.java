@@ -13,4 +13,6 @@ public interface JuegoService {
 	
 	public void saveJuego(Juego juegoG);
 	
+	public void eliminarJuego(Integer id);
+	
 }

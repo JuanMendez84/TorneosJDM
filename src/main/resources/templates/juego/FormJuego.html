@@ -29,6 +29,7 @@
 					style="--bs-scroll-height: 100px;">
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" href="#">Juegos</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Etiquetas</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
 				</ul>
 			</div>
@@ -57,30 +58,28 @@
 		                            <div class="row">
 		                            <div class="mb-3 col-6">
 		                                <label for="min_jugadores" class="form-label">Mínimo jugadores</label>
-		                                <input type="number" class="form-control" id="min_jugadores" th:field="*{minJugadores}" th:value="${minJugadores == 0} ? '4' : '1'">
+		                                <input type="number" class="form-control" id="min_jugadores" th:field="*{minJugadores}" >
 		                            </div>
 		                            <div class="mb-3 col-6">
 		                                <label for="max_jugadores" class="form-label">Máximo jugadores</label>
-		                                <input type="number" class="form-control" id="max_jugadores" th:field="*{maxJugadores}" value="1" min="1">
+		                                <input type="number" class="form-control" id="max_jugadores" th:field="*{maxJugadores}" >
 		                            </div>
 		                            </div>
 		                            
-									<div class="mb-3">
-		                                <label for="coop" class="form-label">¿Es por equipos?</label>
-										<select class="form-select" aria-label="¿Es por equipos?" th:field="*{porEquipos}">
-		<!--   									<option selected>¿Es por equipos?</option> -->
-		  									<option value="true">Si</option>
-		  									<option value="false">No</option>
-										</select>
-									</div>
-									<div class="mb-3">
-		                                <label for="equip" class="form-label">¿Es cooperativo?</label>
-										<select class="form-select" aria-label="¿Es cooperativo?" th:field="*{cooperativo}">
-		<!--   									<option selected>¿Es cooperativo?</option> -->
-		  									<option value="true">Si</option>
-		  									<option value="false">No</option>
-										</select>
-		                            </div>
+<!-- 									<div class="mb-3"> -->
+<!-- 		                                <label for="coop" class="form-label">¿Es por equipos?</label> -->
+<!-- 										<select class="form-select" aria-label="¿Es por equipos?" th:field="*{porEquipos}"> -->
+<!-- 		  									<option value="true">Si</option> -->
+<!-- 		  									<option value="false">No</option> -->
+<!-- 										</select> -->
+<!-- 									</div> -->
+<!-- 									<div class="mb-3"> -->
+<!-- 		                                <label for="equip" class="form-label">¿Es cooperativo?</label> -->
+<!-- 										<select class="form-select" aria-label="¿Es cooperativo?" th:field="*{cooperativo}"> -->
+<!-- 		  									<option value="true">Si</option> -->
+<!-- 		  									<option value="false">No</option> -->
+<!-- 										</select> -->
+<!-- 		                            </div> -->
 		                            <div class="text-center">
 		                                <button type="reset" class="btn btn-secondary">Limpiar</button>
 		                                <button type="#" class="btn btn-primary" onclick="cargarDatos()">Guardar</button>
@@ -110,16 +109,16 @@
 				</thead>
 				<tbody>
 					<tr th:each="juego: ${juegos}">
-						<td th:text="${juego.id}" th:id="${juego.id}">Oranges</td>
+						<td th:text="${juego.id}" th:id="ID+${juego.id}">Oranges</td>
 						<td th:text="${juego.nombre}">Oranges</td>
 						<td th:text="${juego.minJugadores}">0.99</td>
 						<td th:text="${juego.maxJugadores}">0.99</td>
 						<td th:text="${juego.cooperativo}? 'Si' : 'No'">0.99</td>
 						<td th:text="${juego.porEquipos}? 'Si' : 'No'">0.99</td>
-						<td><a th:href="@{/edicionJuego(juegoID=${juego.id})}"><i
-								class="bi bi-pencil-square"></i></td>
-						</a>
-						<td><i class="bi bi-trash"></i></td>
+<!-- 						<td><a th:href="@{/edicionJuego(juegoID=${juego.id})}"><i -->
+<!-- 								class="bi bi-pencil-square"></i></a></td> -->
+						<td><i class="bi bi-pencil-square" th:onclick="guardarJuego([[${juego.id}]])"></i></td>
+						<td><i class="bi bi-trash"  th:onclick="eliminarJuego([[${juego.id}]],[[${juego.nombre}]])"></i></td>
 					</tr>
 				</tbody>
 			</table>

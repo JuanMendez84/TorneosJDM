@@ -10,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class JuegoController {
@@ -58,5 +60,13 @@ public class JuegoController {
     	
         return "juego/procEdicionJuego";
     }
+    
+    @PostMapping("/eliminarJuego/{id}")
+    public String eliminarJuego(@PathVariable final Integer id, Model modelo) {
+    	js.eliminarJuego(id);
+    	modelo.addAttribute("resultado", "OK");
+    	return muestraFormularioJuego(modelo);
+    }
+    
 
 }

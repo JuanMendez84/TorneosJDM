@@ -11,6 +11,9 @@ import com.ubedev.juegosdemesa.entity.Juego;
 @Service
 public class JuegoServiceImpl implements JuegoService {
 
+	@Autowired
+    private JuegoRepository jr;
+	
 	@Override
 	public List<Juego> getJuegos() {
 		// TODO Auto-generated method stub
@@ -25,8 +28,13 @@ public class JuegoServiceImpl implements JuegoService {
 		
 		jr.save(juegoG);
 	}
-	
-	@Autowired
-    private JuegoRepository jr;
+
+	@Override
+	public void eliminarJuego(Integer id) {
+		// TODO Auto-generated method stub
+		
+		jr.deleteById(id);
+		
+	}
 
 }
