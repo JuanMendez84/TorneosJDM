@@ -1,16 +1,77 @@
-function cargarDatos() {
-	var nombreJugador = document.getElementById("nombre").value;
+	document.addEventListener("DOMContentLoaded", function () {
+    // Obtén una referencia al botón
+    var botonEnviar = document.getElementById("enviar");
 
+    // Agrega un controlador de eventos onclick al botón
+    botonEnviar.addEventListener("click", function (event) {
+        event.preventDefault(); // Previene el envío del formulario por defecto
+
+        // Realiza cualquier acción que desees antes de enviar el formulario aquí
+        console.log("Voy a llamar a guardarDatos");
+		guardarDatos();
+        // Envía el formulario programáticamente
+        //document.getElementById("miFormulario").submit();
+    });
+});
+	
+
+function guardarDatos() {
+	
+	var idJugador = document.getElementById("idJuego").value;
+    console.log("Valor de idJugador:" + idJugador);
+
+	if (idJugador == "0") {
+	console.log("Entré en el if");
+
+		Swal.fire({
+	  title: '¿Desea cambiar los datos de este juego?',
+	  text: "" + idJugador,
+	  icon: 'warning',
+	  showCancelButton: true,
+	  confirmButtonColor: '#3085d6',
+	  cancelButtonColor: '#d33',
+	  cancelButtonText: 'No, conservarlos',
+	  confirmButtonText: 'Sí, cambiarlos'
+	})/*.then((result) => {
+		if(result.isConfirmed) {
+			fetch(`/eliminarJuego/${idJuego}`, {
+		      method: 'POST',
+		    })
+		    .then(response => response.text()) // Si el servidor devuelve JSON
+		    .then(data => {
+		      // Manejar la respuesta del servidor aquí
+		      Swal.fire(
+		        'Deleted!',
+		        'Your file has been deleted.',
+		        'success'
+		      );
+		      // Recargar la página después del éxito
+      		  window.location.reload();
+		    })
+		    .catch(error => {
+		      // Manejar errores aquí, si es necesario
+		      console.error('Error:', error);
+		    });
+		}
+	})*/
+		
+		
+	} else {
+		console.log("Entré en el else");
+		alert(idJugador);
+	}
+	
+	console.log("Esto es después del if-else");
   Swal.fire({
     position: "top-end",
     icon: "success",
-    title: `El jugador ${nombreJugador} se ha guardado satisfactoriamente`,
+    title: `El jugador ${idJugador} se ha guardado satisfactoriamente`,
     showConfirmButton: false,
     timer: 4000,
   });
 }
 
-function guardarJuego(idJ) {
+function cargaDatosJuego(idJ) {
 	var identificador="ID" + idJ;
 	var primerNodo= document.getElementById(identificador);
 	
@@ -18,6 +79,8 @@ function guardarJuego(idJ) {
 	
 	var nodoHermanoSiguiente = primerNodo.nextSibling;
 	var i=0;
+	
+	document.getElementById("idJuego").value=idJ;
 	
 	while (nodoHermanoSiguiente.textContent != "") {
     	if (nodoHermanoSiguiente.nodeType === 1) {
