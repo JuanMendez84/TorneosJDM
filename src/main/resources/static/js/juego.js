@@ -1,19 +1,9 @@
-	document.addEventListener("DOMContentLoaded", function () {
-    // Obtén una referencia al botón
-    var botonEnviar = document.getElementById("enviar");
+const myModal = document.getElementById('exampleModal')
+const myInput = document.getElementById('nombre')
 
-    // Agrega un controlador de eventos onclick al botón
-    botonEnviar.addEventListener("click", function (event) {
-        event.preventDefault(); // Previene el envío del formulario por defecto
-
-        // Realiza cualquier acción que desees antes de enviar el formulario aquí
-        console.log("Voy a llamar a guardarDatos");
-		guardarDatos();
-        // Envía el formulario programáticamente
-        //document.getElementById("miFormulario").submit();
-    });
-});
-	
+myModal.addEventListener('shown.bs.modal', () => {
+  myInput.focus()
+});	
 
 function guardarDatos() {
 	
