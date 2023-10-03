@@ -19,20 +19,17 @@ function guardarDatos() {
 	
 	var idJugador = document.getElementById("idJuego").value;
     console.log("Valor de idJugador:" + idJugador);
-
+	
+	var mensaje='¿Desea cambiar los datos de este juego?';
+	var mAceptar='Sí, cambiarlos';
+	var mCancelar='No, conservarlos';
+	
 	if (idJugador == "0") {
-	console.log("Entré en el if");
-
-		Swal.fire({
-	  title: '¿Desea cambiar los datos de este juego?',
-	  text: "" + idJugador,
-	  icon: 'warning',
-	  showCancelButton: true,
-	  confirmButtonColor: '#3085d6',
-	  cancelButtonColor: '#d33',
-	  cancelButtonText: 'No, conservarlos',
-	  confirmButtonText: 'Sí, cambiarlos'
-	})/*.then((result) => {
+		console.log("Entré en el if");
+		mensaje='¿Desea dar de alta este juego?';
+		mAceptar='Sí, dar de alta';
+		mCancelar='No, cancelar alta';
+	/*.then((result) => {
 		if(result.isConfirmed) {
 			fetch(`/eliminarJuego/${idJuego}`, {
 		      method: 'POST',
@@ -55,20 +52,20 @@ function guardarDatos() {
 		}
 	})*/
 		
+	console.log("voy a salir del if");
 		
-	} else {
-		console.log("Entré en el else");
-		alert(idJugador);
 	}
-	
-	console.log("Esto es después del if-else");
-  Swal.fire({
-    position: "top-end",
-    icon: "success",
-    title: `El jugador ${idJugador} se ha guardado satisfactoriamente`,
-    showConfirmButton: false,
-    timer: 4000,
-  });
+
+	Swal.fire({
+	  	title: mensaje,
+	  	text: "" + idJugador,
+	  	icon: 'warning',
+	  	showCancelButton: true,
+	  	confirmButtonColor: '#3085d6',
+	  	cancelButtonColor: '#d33',
+	  	cancelButtonText: mCancelar,
+	  	confirmButtonText: mAceptar
+	});
 }
 
 function cargaDatosJuego(idJ) {
