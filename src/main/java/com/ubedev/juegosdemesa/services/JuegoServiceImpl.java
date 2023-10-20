@@ -16,25 +16,22 @@ public class JuegoServiceImpl implements JuegoService {
 	
 	@Override
 	public List<Juego> getJuegos() {
-		// TODO Auto-generated method stub
-		List<Juego> listaJuegos=jr.findAll();
-		
-		return listaJuegos;
+		return jr.findAll();
 	}
 	
 	@Override
 	public void saveJuego(Juego juegoG) {
-		// TODO Auto-generated method stub
-		
 		jr.save(juegoG);
 	}
 
 	@Override
 	public void eliminarJuego(Integer id) {
-		// TODO Auto-generated method stub
-		
 		jr.deleteById(id);
-		
+	}
+
+	@Override
+	public Juego getJuegoById(Integer id) {
+		return jr.getReferenceById(id);
 	}
 
 }

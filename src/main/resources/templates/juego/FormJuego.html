@@ -14,122 +14,125 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 </head>
 <body>
-	<!-- 	Barra de navegación -->
-	<nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
-		<div class="container-fluid">
-			<a class="navbar-brand" href="#"><img th:src="@{/img/dado.png}" /></a>
-			<button class="navbar-toggler" type="button"
-				data-bs-toggle="collapse" data-bs-target="#navbarScroll"
-				aria-controls="navbarScroll" aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarScroll">
-				<ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll"
-					style="--bs-scroll-height: 100px;">
-					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="#">Juegos</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Etiquetas</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
-				</ul>
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<!-- 	Barra de navegación -->
+				<nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
+					<div class="container-fluid">
+						<a class="navbar-brand" href="#"><img th:src="@{/img/dado.png}" /></a>
+						<button class="navbar-toggler" type="button"
+							data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+							aria-controls="navbarScroll" aria-expanded="false"
+							aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						<div class="collapse navbar-collapse" id="navbarScroll">
+							<ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll"
+								style="--bs-scroll-height: 100px;">
+								<li class="nav-item"><a class="nav-link active"
+									aria-current="page" href="#">Juegos</a></li>
+								<li class="nav-item"><a class="nav-link" href="#">Etiquetas</a></li>
+								<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+							</ul>
+						</div>
+					</div>
+			
+				</nav>
+				<!-- FIN BARRA NAVEGACION -->
 			</div>
 		</div>
+	
 
-	</nav>
-	<!-- FIN -->
-
-	<div class="row">
-
-		<div>
-			<button type="button" class="btn btn-primary" data-bs-toggle="modal"
-				data-bs-target="#exampleModal">Nuevo juego</button>
-
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<th>Id</th>
-						<th>Nombre</th>
-						<th>Min. Jugadores</th>
-						<th>Max. Jugadores</th>
-						<th>¿Es cooperativo?</th>
-						<th>¿Es por equipos?</th>
-						<th>Editar</th>
-						<th>Eliminar</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="juego: ${juegos}">
-						<td th:text="${juego.id}" th:id="ID+${juego.id}">Oranges</td>
-						<td th:text="${juego.nombre}">Oranges</td>
-						<td th:text="${juego.minJugadores}">0.99</td>
-						<td th:text="${juego.maxJugadores}">0.99</td>
-						<td th:text="${juego.cooperativo}? 'Si' : 'No'">0.99</td>
-						<td th:text="${juego.porEquipos}? 'Si' : 'No'">0.99</td>
-						<!-- 						<td><a th:href="@{/edicionJuego(juegoID=${juego.id})}"><i -->
-						<!-- 								class="bi bi-pencil-square"></i></a></td> -->
-						<td><i class="bi bi-pencil-square" data-bs-toggle="modal" data-bs-target="#exampleModal"
-							th:onclick="cargaDatosJuego([[${juego.id}]])"></i></td>
-						<td><i class="bi bi-trash"
-							th:onclick="eliminarJuego([[${juego.id}]],[[${juego.nombre}]])"></i></td>
-					</tr>
-				</tbody>
-			</table>
-
-			<!-- Modal -->
-			<div class="modal fade" id="exampleModal" tabindex="-1"
-				aria-labelledby="exampleModalLabel" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-body">
-							<div class="container mt-2">
-								<div class="row justify-content-center">
-									<div class="col-md">
-										<div class="card">
-											<div class="card-header bg-primary text-white">
-												<h5 class="card-title">Alta o modificacion de juego</h5>
-											</div>
-											<div class="card-body">
-												<!-- 		                        <form action="/procEdicionJuego" th:object="${juego}" method="post"> -->
-												<form th:object="${juego}" method="post">
-													<input type="text" id="idJuego" style="display: none;"
-														th:flield="id" value="0">
-													<div class="mb-3">
-														<label for="nombre" class="form-label">Nombre</label> <input
-															type="text" class="form-control" id="nombre"
-															th:field="*{nombre}" required="required">
-													</div>
-													<div class="row">
-														<div class="mb-3 col-6">
-															<label for="min_jugadores" class="form-label">Mínimo
-																jugadores</label> <input type="number" class="form-control"
-																id="min_jugadores" th:field="*{minJugadores}">
+		<div class="row">
+			<div class="col mt-1">
+				<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalJuego" th:onclick="cargaDatosJuego(0)">Nuevo juego</button>
+	
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Nombre</th>
+							<th>Min. Jugadores</th>
+							<th>Max. Jugadores</th>
+							<th>¿Es cooperativo?</th>
+							<th>¿Es por equipos?</th>
+							<th>Editar</th>
+							<th>Eliminar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="juego: ${juegos}">
+							<td th:text="${juego.id}" th:id="ID+${juego.id}">Oranges</td>
+							<td th:text="${juego.nombre}">Oranges</td>
+							<td th:text="${juego.minJugadores}">0.99</td>
+							<td th:text="${juego.maxJugadores}">0.99</td>
+							<td th:text="${juego.cooperativo}? 'Si' : 'No'">0.99</td>
+							<td th:text="${juego.porEquipos}? 'Si' : 'No'">0.99</td>
+							<!-- 						<td><a th:href="@{/edicionJuego(juegoID=${juego.id})}"><i -->
+							<!-- 								class="bi bi-pencil-square"></i></a></td> -->
+							<td><a ><i class="bi bi-pencil-square" data-bs-toggle="modal" data-bs-target="#modalJuego"
+								th:onclick="cargaDatosJuego([[${juego.id}]])"></i></a></td>
+							<td><i class="bi bi-trash"
+								th:onclick="eliminarJuego([[${juego.id}]],[[${juego.nombre}]])"></i></td>
+						</tr>
+					</tbody>
+				</table>
+	
+				<!-- Modal -->
+				<div class="modal fade" id="modalJuego" tabindex="-1"
+					aria-labelledby="modalJuegoLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-body">
+								<div class="container mt-2">
+									<div class="row justify-content-center">
+										<div class="col-md">
+											<div class="card">
+												<div class="card-header bg-primary text-white">
+													<h5 class="card-title">Alta o modificacion de juego</h5>
+												</div>
+												<div class="card-body">
+													<!-- 		                        <form action="/procEdicionJuego" th:object="${juego}" method="post"> -->
+													<form th:object="${juego}" method="post" action="/procEdicionJuego">
+														<input type="hidden" id="idJuego" th:field="*{id}" value="0">
+														<div class="mb-3">
+															<label for="nombre" class="form-label">Nombre</label> 
+															<input type="text" class="form-control" id="nombre" th:field="*{nombre}" required="required">
 														</div>
-														<div class="mb-3 col-6">
-															<label for="max_jugadores" class="form-label">Máximo
-																jugadores</label> <input type="number" class="form-control"
-																id="max_jugadores" th:field="*{maxJugadores}">
+														<div class="row">
+															<div class="mb-3 col-6">
+																<label for="min_jugadores" class="form-label">Mínimo
+																	jugadores</label> <input type="number" class="form-control"
+																	id="min_jugadores" th:field="*{minJugadores}">
+															</div>
+															<div class="mb-3 col-6">
+																<label for="max_jugadores" class="form-label">Máximo
+																	jugadores</label> <input type="number" class="form-control"
+																	id="max_jugadores" th:field="*{maxJugadores}">
+															</div>
 														</div>
-													</div>
-
-													<!-- 									<div class="mb-3"> -->
-													<!-- 		                                <label for="coop" class="form-label">¿Es por equipos?</label> -->
-													<!-- 										<select class="form-select" aria-label="¿Es por equipos?" th:field="*{porEquipos}"> -->
-													<!-- 		  									<option value="true">Si</option> -->
-													<!-- 		  									<option value="false">No</option> -->
-													<!-- 										</select> -->
-													<!-- 									</div> -->
-													<!-- 									<div class="mb-3"> -->
-													<!-- 		                                <label for="equip" class="form-label">¿Es cooperativo?</label> -->
-													<!-- 										<select class="form-select" aria-label="¿Es cooperativo?" th:field="*{cooperativo}"> -->
-													<!-- 		  									<option value="true">Si</option> -->
-													<!-- 		  									<option value="false">No</option> -->
-													<!-- 										</select> -->
-													<!-- 		                            </div> -->
-													<div class="text-center">
-														<button type="reset" class="btn btn-secondary">Limpiar</button>
-														<button type="#" class="btn btn-primary" id="enviar">Guardarlos</button>
-													</div>
-												</form>
+	
+														<!-- 									<div class="mb-3"> -->
+														<!-- 		                                <label for="coop" class="form-label">¿Es por equipos?</label> -->
+														<!-- 										<select class="form-select" aria-label="¿Es por equipos?" th:field="*{porEquipos}"> -->
+														<!-- 		  									<option value="true">Si</option> -->
+														<!-- 		  									<option value="false">No</option> -->
+														<!-- 										</select> -->
+														<!-- 									</div> -->
+														<!-- 									<div class="mb-3"> -->
+														<!-- 		                                <label for="equip" class="form-label">¿Es cooperativo?</label> -->
+														<!-- 										<select class="form-select" aria-label="¿Es cooperativo?" th:field="*{cooperativo}"> -->
+														<!-- 		  									<option value="true">Si</option> -->
+														<!-- 		  									<option value="false">No</option> -->
+														<!-- 										</select> -->
+														<!-- 		                            </div> -->
+														<div class="text-center">
+															<button type="reset" class="btn btn-secondary">Limpiar</button>
+															<button type="#" class="btn btn-primary" id="enviar">Guardar</button>
+														</div>
+													</form>
+												</div>
 											</div>
 										</div>
 									</div>
@@ -138,8 +141,8 @@
 						</div>
 					</div>
 				</div>
+	
 			</div>
-
 		</div>
 	</div>
 
@@ -150,6 +153,7 @@
 		crossorigin="anonymous"></script>
 	<!-- Sweet Alert -->
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 	<script src="/js/juego.js"></script>
 </body>
 </html>

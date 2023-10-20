@@ -1,4 +1,4 @@
-const myModal = document.getElementById('exampleModal')
+const myModal = document.getElementById('modalJuego')
 const myInput = document.getElementById('nombre')
 
 myModal.addEventListener('shown.bs.modal', () => {
@@ -59,6 +59,16 @@ function guardarDatos() {
 }
 
 function cargaDatosJuego(idJ) {
+	
+	if (idJ == 0)
+	{
+		document.getElementById("idJuego").value=null;
+		document.getElementById("min_jugadores").value=null;
+		document.getElementById("max_jugadores").value=null;
+		document.getElementById("nombre").value=null;
+		return
+	}
+	
 	var identificador="ID" + idJ;
 	var primerNodo= document.getElementById(identificador);
 	
@@ -88,6 +98,20 @@ function cargaDatosJuego(idJ) {
     	}
     	nodoHermanoSiguiente = nodoHermanoSiguiente.nextSibling;
     }
+    
+   console.log(idJ)
+   /*$.ajax({
+        type: "GET",
+        url: "/editarJuego/" + idJ, // La URL del controlador
+        success: function(response) {
+            console.log(response)
+            //$("#resultado").text("Respuesta del controlador: " + response);
+        },
+        error: function(error) {
+            console.log("Error: " + error)
+        }
+    });
+   */
 }
 
 

@@ -15,4 +15,6 @@ public interface JuegoService {
 	
 	public void eliminarJuego(Integer id);
 	
+	public Juego getJuegoById(Integer id);
+	
 }
