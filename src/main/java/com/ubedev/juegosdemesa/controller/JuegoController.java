@@ -44,7 +44,7 @@ public class JuegoController {
         Juego juego=new Juego();
     	modelo.addAttribute("juego", juego);
 
-        return "juego/FormJuego";
+        return "principal/FormJuego";
     }
     
     
@@ -52,7 +52,7 @@ public class JuegoController {
     public String muestraFormularioEdicionJuego(Model modelo) {
     	Juego juegoNuevo=new Juego();
     	modelo.addAttribute("juegoNuevo", juegoNuevo);
-        return "juego/FormEdicionJuego";
+        return "principal/FormEdicionJuego";
     }
     
     @PostMapping("/procEdicionJuego")
@@ -68,7 +68,7 @@ public class JuegoController {
     public String editarJuego(@RequestParam("juegoID") Integer id, Model modelo) {
     	Juego juego = js.getJuegoById(id);
     	modelo.addAttribute("juego", juego);
-    	return "juego/FormJuego";
+    	return "principal/FormJuego";
     }
 
     
