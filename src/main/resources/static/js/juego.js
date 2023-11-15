@@ -1,3 +1,24 @@
+$(document).ready(function () {
+    // Manejo del clic en "Ver más" para cada fila
+    $('[id^=ver-mas-]').on('click', function (e) {
+        e.preventDefault();
+        var id = $(this).attr('id').split('-')[2]; // Obtener el ID de juego
+
+        $('#tag-cloud-' + id + ' .tag:hidden').toggleClass('hidden-tag');
+        $(this).hide();
+    });
+
+    // Ocultar etiquetas excedentes para cada fila inicialmente
+    $('[id^=tag-cloud-]').each(function () {
+        var numTagsAMostrar = 4; // Número de etiquetas a mostrar inicialmente
+        var id = $(this).attr('id').split('-')[2]; // Obtener el ID de juego
+
+        $(this).find('.tag:gt(' + (numTagsAMostrar - 1) + ')').addClass('hidden-tag');
+        $('#ver-mas-' + id).toggle($(this).find('.tag:hidden').length > 0);
+    });
+});
+
+
 const myModal = document.getElementById('modalJuego')
 const myInput = document.getElementById('nombre')
 

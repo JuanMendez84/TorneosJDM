@@ -46,7 +46,7 @@
 
 		<div class="row">
 			<div class="col mt-1">
-				<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalJuego" th:onclick="cargaDatosJuego(0)">Nuevo juego</button>
+				<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEtiqueta" th:onclick="cargaDatosEtiqueta(0)">Nueva etiqueta</button>
 	
 				<table class="table table-striped">
 					<thead>
@@ -86,7 +86,7 @@
 												</div>
 												<div class="card-body">
 													<!-- 		                        <form action="/procEdicionJuego" th:object="${juego}" method="post"> -->
-													<form th:object="${etiqueta}" method="post" action="/procEdicionJuego">
+													<form th:object="${etiqueta}" method="post" action="/procEdicionEtiqueta">
 														<input type="hidden" id="idEtiqueta" th:field="*{id}" value="0">
 														<div class="mb-3">
 															<label for="nombre" class="form-label">Nombre</label> 
@@ -131,7 +131,8 @@
 			</div>
 		</div>
 	</div>
-
+	<!-- jquery -->
+	<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 	<!-- Bootstrap -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
@@ -139,7 +140,6 @@
 		crossorigin="anonymous"></script>
 	<!-- Sweet Alert -->
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-	<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-	<script src="/js/juego.js"></script>
+	<script src="/js/etiqueta.js"></script>
 </body>
 </html>
